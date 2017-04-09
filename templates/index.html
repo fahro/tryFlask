@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+  </head>
+  <body>
+
+    <h1>Weather forecast for {{city}},{{country}}</h1>
+
+    {%  for day in forecast_list  %}
+
+        {% if day[3] == 'light snow' %}
+          {%set colorName='red' %}
+        {% elif day[3]=='sky is clear'%}
+          {%set colorName='blue' %}
+        {% else %}
+          {% set colorName='green' %}
+        {% endif %}
+
+        <p>
+          <font color= {{colorName}} >
+          {{day[0]}} &ndash; {{day[1]}} &ndash; {{day[2]}} &ndash; {{day[3]}}
+          </font>
+        </p>
+    {% endfor %}
+
+
+    <table border="1">
+        <tr>
+          <th>Date</th>
+          <th>Min</th>
+          <th>Max</th>
+          <th>Description</th>
+        </tr>
+
+        {% for day in forecast_list %}
+            <tr>
+              <td>{{day[0]}}</td>
+              <td>{{day[1]}}</td>
+              <td>{{day[2]}}</td>
+              <td>{{day[3]}}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+  </body>
+</html>
